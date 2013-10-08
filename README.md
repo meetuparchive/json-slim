@@ -26,20 +26,20 @@ For a JSON object
 Let's say you don't care for titles.
 
 ```scala
-json.slim.Trim.omit("people.titles")(jsonStr)
+jsonslim.Trim.omit("people.titles")(jsonStr)
 ```
 
 Let's say you only want the names of people
 
 ```scala
-json.slim.Trim.only("people.name")(jsonStr)
+jsonslim.Trim.only("people.name")(jsonStr)
 ```
 
 You can also combine multiple paths for each for a slim party
 
 ```scala
-val trim = json.slim.Trim.only("people.name", "foo.bar")
-                         .omit("people.titles", "baz.boom")_
+val trim = jsonslim.Trim.only("people.name", "foo.bar")
+                        .omit("people.titles", "baz.boom")_
 val slim = jsonDocuments.map(trim)
 ```
 
