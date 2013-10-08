@@ -127,8 +127,10 @@ trait TrimOps {
               update(ary.zip(targets) map {
                 case (jsrc, jtar) => only0(jsrc, tail, jtar)
               })
-            case field =>
-              append(target, JField(key, field))
+            case _ =>
+              // key binds to a primative value and a tail remains,
+              // this is an invalid query
+              target
           }
       }
     }
