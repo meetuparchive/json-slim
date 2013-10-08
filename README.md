@@ -32,13 +32,23 @@ json.slim.Trim.omit("people.titles")(jsonStr)
 Let's say you only want the names of people
 
 ```scala
-json.slim.Trim.only("people.names")(jsonStr)
+json.slim.Trim.only("people.name")(jsonStr)
 ```
 
 You can also combine multiple paths for each for a slim party
 
 ```scala
-val trim = json.slim.Trim.only("people.names", "foo.bar")
+val trim = json.slim.Trim.only("people.name", "foo.bar")
                          .omit("people.titles", "baz.boom")_
 val slim = jsonDocuments.map(trim)
 ```
+
+# Authors
+
+* Doug Tangren [@softprops](http://github.com/softprops)
+
+# License
+
+Copyright 2013 Meetup inc
+
+Licensed under [MIT](https://github.com/meetup/json-slim/blob/master/LICENSE)
