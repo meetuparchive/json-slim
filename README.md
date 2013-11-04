@@ -35,13 +35,32 @@ Let's say you only want the names of people. Include only names with
 jsonslim.Trim.only("people.name")(jsonStr)
 ```
 
-You can also combine multiple paths for each for a slim party
+## inputs
+
+A `Trim` is an exported function that you can assign and apply to multiple inputs. Inputs for a `Trim` are defined as the following typeclass `Src[T]`.
+
+```scala
+trait Src[T] {
+  def apply(a: T): Option[JValue]
+  def unapply(jv: JValue): T
+}
+```
+
+A `Src[T]` needs a way to be lifted into an `org.json4s.JValue`, the intermediatory format used to manipulate the JSON ast, and a way to go from an `org.json4s.JValue` back into type `T`. Since the lifting into a `JValue` may
+not be possible, failure may be represented as `None`. `Src` convertions for `Strings` and direct `JVaules` are provided. If you use an alternative type representation
+of JSON you will need to bring an implicit implementation of a `Src` into scope.
+
+## combining operations
+
+You can also combine multiple attribute paths for each operation for a slim party
 
 ```scala
 val trim = jsonslim.Trim.only("people.name", "foo.bar")
                         .omit("people.titles", "baz.boom")
-val slim = jsonDocuments.map(trim)
+val slim = jsonDocuments.map(trim(_)).flatten
 ```
+
+
 
 # Authors
 
