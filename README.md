@@ -6,7 +6,7 @@ Json slim trims your JSON of unwanted adornments and attributes.
 
 ## usage
 
-`jsonslim` provides a way to negotiate the presence ( or absense ) of properties within JSON-encoded objects. The vocabulating for doing is comprised of `only` or `omit`. 
+`jsonslim` provides a way to negotiate the presence ( or absense ) of properties within JSON-encoded objects. The vocabulating for doing is comprised to operations: `only` and `omit`. 
 You can ask for `only` a set of attributes or, if you are feeling more conservative, you can ask to `omit` attributes.
 
 Target attributes of JSON-encoded object are referenced by simple `.` delimited strings which represent traversable `path` to the attribute.
@@ -26,13 +26,13 @@ Assume you have given the following JSON-encoded object
 Let's say you don't care for titles. Omit them with
 
 ```scala
-jsonslim.Trim.omit("people.titles")(jsonStr)
+jsonslim.Trim.omit("people.titles")(jsonStr) // Some({"people":[{"name":"bill","age":30}]})
 ```
 
 Let's say you only want the names of people. Include only names with
 
 ```scala
-jsonslim.Trim.only("people.name")(jsonStr)
+jsonslim.Trim.only("people.name")(jsonStr) // Some({"people":[{"name":"bill"}]})
 ```
 
 ## inputs
