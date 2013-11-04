@@ -8,7 +8,7 @@ trait Builder {
   def trimmed: Trim
   /** omits json fields identified by period-delimited paths */
   def only(paths: String*) = trimmed.copy(_only = paths.toList)
-  /** selects only the json fields identitied by a list of period-deleted paths */
+  /** selects only the json fields identitied by a list of period-delimited paths */
   def omit(paths: String*) = trimmed.copy(_omit = paths.toList)
 }
 
