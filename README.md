@@ -39,7 +39,7 @@ You can also combine multiple paths for each for a slim party
 
 ```scala
 val trim = jsonslim.Trim.only("people.name", "foo.bar")
-                        .omit("people.titles", "baz.boom")_
+                        .omit("people.titles", "baz.boom")
 val slim = jsonDocuments.map(trim)
 ```
 
