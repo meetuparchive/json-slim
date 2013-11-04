@@ -37,7 +37,7 @@ jsonslim.Trim.only("people.name")(jsonStr)
 
 ## inputs
 
-A `Trim` is an exported function that you can assign and apply to multiple inputs. Inputs for a `Trim` are defined as the following typeclass `Src[T]`.
+A `Trim` is an exported function that you can assign and apply to multiple inputs. Inputs for a `Trim` are defined as the following typeclass `jsonslim.Src[T]`.
 
 ```scala
 trait Src[T] {
