@@ -1,0 +1,21 @@
+{
+  "organization" : "com.meetup",
+  "name" : "json-slim",
+  "version" : "0.1.0",
+  "description" : "Trims your JSON of unwanted adornments and attributes.",
+  "site" : "https://github.com/meetup/json-slim/",
+  "tags" : [ "json" ],
+  "docs" : "",
+  "resolvers" : [ "http://jcenter.bintray.com", "http://dl.bintray.com/content/softprops/maven" ],
+  "dependencies" : [ {
+    "organization" : "org.json4s",
+    "name" : "json4s-native",
+    "version" : "3.2.5"
+  } ],
+  "scalas" : [ "2.10.2" ],
+  "licenses" : [ {
+    "name" : "MIT",
+    "url" : "https://github.com/meetup/json-slim/blob/0.1.0/LICENSE"
+  } ],
+  "sbt" : false
+}
