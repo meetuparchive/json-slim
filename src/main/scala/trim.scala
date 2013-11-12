@@ -10,7 +10,7 @@ trait Builder {
   def only(paths: String*) = trimmed.copy(_only = paths.toList)
   /** selects only the json fields identified by a list of period-delimited paths */
   def omit(paths: String*) = trimmed.copy(_omit = paths.toList)
-  def delimiter(d: String) = trimed.copy(_delimiter = d)
+  def delimiter(d: String) = trimmed.copy(_delimiter = d)
 }
 
 object Trim extends Builder {
@@ -44,7 +44,6 @@ trait TrimOps {
         try omit(only(value, onlys), omits)
         catch {
           case e: Throwable =>
-            e.printStackTrace()
             js
         }
     }
