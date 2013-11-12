@@ -29,7 +29,7 @@ case class Trim(
 }
 
 trait TrimOps {
-  private def append(target: JValue, field: (String, JValue)) = 
+  private def append(target: JValue, field: (String, JValue)) =
     target match {
       case JObject(fs) => JObject(field :: fs)
       case xs => xs ++ field
@@ -49,7 +49,7 @@ trait TrimOps {
         }
     }
 
-  /** Reduces a json value down by excluding a list of path specs
+  /** Reduces a json value's attributes by excluding a list of path specs
    *  @param js The source value
    *  @param specs list of period (.) separated path specs. Path specs
    *               correlate to paths to values in json objects
@@ -75,15 +75,13 @@ trait TrimOps {
       }
       rep(l, src)
     }
-    (js /: specs.map(_.split('.').toList)) {
-        case (a, keys) => replace(a, keys, JNothing)
-    } remove {
+    (js /: specs.map(_.split('.').toList))(replace(_, _, JNothing)) remove {
       case JNothing => true
       case _ => false
     }
   }
 
-  /** Redues a json value down by only including a list of path specs
+  /** Reduces a json value's attributes by only including a list of path specs
    *  @param js The source value
    *  @specs specs list of period (.) separated path specs. Path specs correlate
    *               to paths to values in json objects.
@@ -91,9 +89,9 @@ trait TrimOps {
    */
   private def only(js: JValue, specs: List[String]): JValue = {
     def only0(
-      src: JValue,
+      target: JValue,
       keys: List[String],
-      target: JValue = JObject()
+      src: JValue
     ): JValue = {
       keys match {
         case Nil =>
@@ -105,12 +103,12 @@ trait TrimOps {
             case JNothing =>
               target
             case obj: JObject =>
-              val field = JField(key, only0(obj, tail, (target \ key) match {
+              val field = JField(key, only0((target \ key) match {
                 case JNothing =>
                   JObject(Nil)
                 case tv =>
                   tv
-              }))
+              }, tail, obj))
               append(target, field)
             case JArray(ary) =>
               val (targets, update) = (target \ key) match {
@@ -128,7 +126,7 @@ trait TrimOps {
                   })
               }
               update(ary.zip(targets) map {
-                case (jsrc, jtar) => only0(jsrc, tail, jtar)
+                case (jsrc, jtar) => only0(jtar, tail, jsrc)
               })
             case _ =>
               // key binds to a primative value and a tail remains,
@@ -139,9 +137,7 @@ trait TrimOps {
     }
     specs match {
       case Nil => js
-      case xs => ((JObject(Nil): JValue) /: xs.map(_.split('.').toList)) {
-        case (target, keys) => only0(js, keys, target)
-      }
+      case xs => ((JObject(Nil): JValue) /: xs.map(_.split('.').toList))(only0(_, _, js))
     }
   }
 }
