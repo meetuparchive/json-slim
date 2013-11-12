@@ -6,7 +6,7 @@ Json slim trims your JSON of unwanted adornments and attributes.
 
 ## usage
 
-`jsonslim` provides a way to negotiate the presence ( or absense ) of properties within JSON-encoded objects. The vocabulating for doing is comprised to operations: `only` and `omit`. 
+`jsonslim` provides a way to negotiate the presence ( or absence ) of properties within JSON-encoded objects. The vocabulary for doing is comprised to operations: `only` and `omit`. 
 You can ask for `only` a set of attributes or, if you are feeling more conservative, you can ask to `omit` attributes.
 
 Target attributes of JSON-encoded object are referenced by simple `.` delimited strings which represent traversable `path` to the attribute.
@@ -46,8 +46,8 @@ trait Src[T] {
 }
 ```
 
-A `Src[T]` needs a way to be lifted into an `org.json4s.JValue`, the intermediatory format used to manipulate the JSON ast, and a way to go from an `org.json4s.JValue` back into type `T`. Since the lifting into a `JValue` may
-not be possible, failure may be represented as `None`. `Src` convertions for `Strings` and direct `JVaules` are provided. If you use an alternative type representation
+A `Src[T]` needs a way to be lifted into an `org.json4s.JValue`, the intermediary format used to manipulate the JSON ast, and a way to go from an `org.json4s.JValue` back into type `T`. Since the lifting into a `JValue` may
+not be possible, failure may be represented as `None`. `Src` conversions for `Strings` and direct `JVaules` are provided. If you use an alternative type representation
 of JSON you will need to bring an implicit implementation of a `Src` into scope.
 
 ## combining operations

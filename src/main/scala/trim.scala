@@ -8,8 +8,9 @@ trait Builder {
   def trimmed: Trim
   /** omits json fields identified by period-delimited paths */
   def only(paths: String*) = trimmed.copy(_only = paths.toList)
-  /** selects only the json fields identitied by a list of period-delimited paths */
+  /** selects only the json fields identified by a list of period-delimited paths */
   def omit(paths: String*) = trimmed.copy(_omit = paths.toList)
+  def delimiter(d: String) = trimed.copy(_delimiter = d)
 }
 
 object Trim extends Builder {
@@ -18,9 +19,11 @@ object Trim extends Builder {
 
 case class Trim(
   _omit: List[String] = List.empty[String],
-  _only: List[String] = List.empty[String])
+  _only: List[String] = List.empty[String],
+  _delimiter: String = ".")
   extends TrimOps with Builder {
   def trimmed = this
+  /** trims some arbitrary JSON src to provided specification */
   def apply[T: Src](in: T): Option[T] =
     Src(in).map(trim(_only, _omit)).map(implicitly[Src[T]].unapply(_))
 }
