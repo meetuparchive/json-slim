@@ -1,0 +1,1 @@
+[json-slim](https://github.com/meetup/json-slim) trims your JSON of unwanted adornments and attributes

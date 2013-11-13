@@ -1,0 +1,26 @@
+## initial release
+
+JSON slim cuts out unwanted attributes of JSON serialized data with field path specs
+
+    val wide = """{
+    |"commiter": {
+    |    "name": "doug"
+    |},
+    |"repo": {
+    |    "name": "json-slim"
+    |},
+    |"features": [{
+    |    "name": "only",
+    |    "desc": "filters json to only these attrs"
+    |}, {
+    |    "name": "omit",
+    |    "desc": "filters json without these attrs"
+    |}]
+    }""".stripMargin
+
+    val slim = (jsonslim.Trim
+               .only("features", "repo.name")
+               .omit("features.name")(json))
+
+    slim.map(println(_))
+    // => {"repo":{"name":"json-slim"},"features":[{"desc":"filters json to only these attrs"},{"desc":"filters json without these attrs"}]}
