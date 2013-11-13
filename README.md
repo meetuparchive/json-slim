@@ -28,7 +28,14 @@ ls-install json-slim
 `jsonslim` provides a way to negotiate the presence ( or absence ) of properties within JSON-encoded objects. The vocabulary for doing is comprised to operations: `only` and `omit`. 
 You can ask for `only` a set of attributes or, if you are feeling more conservative, you can ask to `omit` attributes.
 
-Target attributes of JSON-encoded object are referenced by simple `.` delimited strings which represent traversable `path` to the attribute.
+### paths
+
+Target attributes of JSON-encoded object are referenced by simple `.` delimited strings which represent traversable `paths` to the attribute.
+
+`a.b.c` will target the json field c of field b of field a. You may provide multiple paths for each operation. Only takes precedence over omit. If you ask for "only" a subset of fields,
+the "omit" will only apply to that subset.
+
+### example
 
 Assume you have given the following JSON-encoded object
 
