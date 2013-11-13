@@ -61,7 +61,7 @@ Let's say you only want the names of people. Include only names with
 jsonslim.Trim.only("people.name")(jsonStr) // Some({"people":[{"name":"bill"}]})
 ```
 
-## inputs
+### inputs
 
 A `Trim` is an exported function that you can assign and apply to multiple inputs. Inputs for a `Trim` are defined as the following typeclass `jsonslim.Src[T]`.
 
@@ -76,7 +76,7 @@ A `Src[T]` needs a way to be lifted into an `org.json4s.JValue`, the intermediar
 not be possible, failure may be represented as `None`. `Src` conversions for `Strings` and direct `JVaules` are provided. If you use an alternative type representation
 of JSON you will need to bring an implicit implementation of a `Src` into scope.
 
-## combining operations
+### combining operations
 
 You can also combine multiple attribute paths for each operation for a slim party
 
