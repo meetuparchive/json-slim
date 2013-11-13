@@ -4,6 +4,25 @@
 
 Json slim trims your JSON of unwanted adornments and attributes.
 
+
+## Install
+
+using sbt add the following to your build definition
+
+```scala
+resolvers += "softprops-bintray" at "http://dl.bintray.com/softprops/maven"
+
+libraryDependencies += "com.meetup" % "json-slim" % "0.1.0"
+```
+
+or if you are using [ls-sbt](https://github.com/softprops/ls-sbt)
+
+just do
+
+```scala
+ls-install json-slim
+```
+
 ## usage
 
 `jsonslim` provides a way to negotiate the presence ( or absence ) of properties within JSON-encoded objects. The vocabulary for doing is comprised to operations: `only` and `omit`. 
