@@ -25,4 +25,4 @@ JSON slim cuts out unwanted attributes of JSON serialized data with field [path 
     slim.map(println(_))
     // => {"repo":{"name":"json-slim"},"features":[{"desc":"filters json to only these attrs"},{"desc":"filters json without these attrs"}]}
 
-pathspec: https://github.com/meetup/json-slim#paths
+[pathspec]: https://github.com/meetup/json-slim#paths
