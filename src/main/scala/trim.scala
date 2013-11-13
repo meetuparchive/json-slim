@@ -10,7 +10,6 @@ trait Builder {
   def only(paths: String*) = trimmed.copy(_only = paths.toList)
   /** selects only the json fields identified by a list of period-delimited paths */
   def omit(paths: String*) = trimmed.copy(_omit = paths.toList)
-  def delimiter(d: String) = trimmed.copy(_delimiter = d)
 }
 
 object Trim extends Builder {
@@ -19,8 +18,7 @@ object Trim extends Builder {
 
 case class Trim(
   _omit: List[String] = List.empty[String],
-  _only: List[String] = List.empty[String],
-  _delimiter: String = ".")
+  _only: List[String] = List.empty[String])
   extends TrimOps with Builder {
   def trimmed = this
   /** trims some arbitrary JSON src to provided specification */
@@ -29,6 +27,9 @@ case class Trim(
 }
 
 trait TrimOps {
+
+  private def fields(str: String) = str.split('.').toList
+
   private def append(target: JValue, field: (String, JValue)) =
     target match {
       case JObject(fs) => JObject(field :: fs)
@@ -74,7 +75,7 @@ trait TrimOps {
       }
       rep(l, src)
     }
-    (js /: specs.map(_.split('.').toList))(replace(_, _, JNothing)) remove {
+    (js /: specs.map(fields))(replace(_, _, JNothing)) remove {
       case JNothing => true
       case _ => false
     }
@@ -136,7 +137,7 @@ trait TrimOps {
     }
     specs match {
       case Nil => js
-      case xs => ((JObject(Nil): JValue) /: xs.map(_.split('.').toList))(only0(_, _, js))
+      case xs => ((JObject(Nil): JValue) /: xs.map(fields))(only0(_, _, js))
     }
   }
 }
