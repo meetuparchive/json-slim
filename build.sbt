@@ -2,9 +2,11 @@ organization := "com.meetup"
 
 name := "json-slim"
 
-version := "0.1.0"
+version := "0.1.1"
 
-scalaVersion := "2.10.3"
+crossScalaVersions := Seq("2.10.4", "2.11.5")
+
+scalaVersion := crossScalaVersions.value.last
 
 description := "Trims your JSON of unwanted adornments and attributes."
 
@@ -12,9 +14,9 @@ homepage := Some(url(s"https://github.com/meetup/${name.value}/"))
 
 licenses += ("MIT", url(s"https://github.com/meetup/${name.value}/blob/${version.value}/LICENSE"))
 
-libraryDependencies += ("org.json4s" %% "json4s-native" % "3.2.5").exclude("com.thoughtworks.paranamer", "paranamer").exclude("org.codehaus","codehaus-parent")
+libraryDependencies += ("org.json4s" %% "json4s-native" % "3.2.11").exclude("com.thoughtworks.paranamer", "paranamer").exclude("org.codehaus","codehaus-parent")
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "1.9.1" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.1" % "test"
 
 bintraySettings
 

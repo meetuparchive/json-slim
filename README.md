@@ -12,7 +12,7 @@ using sbt add the following to your build definition
 ```scala
 resolvers += "softprops-bintray" at "http://dl.bintray.com/softprops/maven"
 
-libraryDependencies += "com.meetup" % "json-slim" % "0.1.0"
+libraryDependencies += "com.meetup" % "json-slim" % "0.1.1"
 ```
 
 or if you are using [ls-sbt](https://github.com/softprops/ls-sbt)
