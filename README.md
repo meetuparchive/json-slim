@@ -1,4 +1,4 @@
-# json slim
+# json slim [![Coverage Status](https://coveralls.io/repos/github/meetup/json-slim/badge.svg?branch=master)](https://coveralls.io/github/meetup/json-slim?branch=master)
 
 > make your JSON look good in those skinny jeans
 
@@ -25,7 +25,7 @@ ls-install json-slim
 
 ## usage
 
-`jsonslim` provides a way to negotiate the presence ( or absence ) of properties within JSON-encoded objects. The vocabulary for doing is comprised to operations: `only` and `omit`. 
+`jsonslim` provides a way to negotiate the presence ( or absence ) of properties within JSON-encoded objects. The vocabulary for doing is comprised to operations: `only` and `omit`.
 You can ask for `only` a set of attributes or, if you are feeling more conservative, you can ask to `omit` attributes.
 
 ### paths

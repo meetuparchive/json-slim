@@ -18,5 +18,5 @@ object Src {
     def apply(in: JValue) = Some(in)
     def unapply(jv: JValue) = jv
   }
-  def apply[T: Src](in: T) = implicitly[Src[T]].apply(in)
+  def apply[T: Src](in: T): Option[JValue] = implicitly[Src[T]].apply(in)
 }
